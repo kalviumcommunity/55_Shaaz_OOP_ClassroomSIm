@@ -1,61 +1,60 @@
 #include <iostream>
 using namespace std;
 
-class Teacher{
+class Teacher {
     public:
-
         string name;
         string classTeacherOf;
         string subject;
         int salary;
 
-        Teacher(string n, string c, string sub, int s){
-            name = n;
-            classTeacherOf = c;
-            subject = sub;
-            salary = s;
+        Teacher(string n, string c, string sub, int s) {
+            this->name = n;
+            this->classTeacherOf = c;
+            this->subject = sub;
+            this->salary = s;
         }
 
-        void displayInfo(){
-            cout<<"Name - "<<name<<endl;
-            cout<<"Class Teacher of - "<<classTeacherOf<<endl;
-            cout<<"Subject - "<<subject<<endl;
-            cout<<"Salary - "<<salary<<endl<<endl;
+        void displayInfo() {
+            cout << "Name - " << this->name << endl;
+            cout << "Class Teacher of - " << this->classTeacherOf << endl;
+            cout << "Subject - " << this->subject << endl;
+            cout << "Salary - " << this->salary << endl << endl;
         }
 
-        int increment(int num){
-            salary = salary + num;
-            return salary;
+        int increment(int num) {
+            this->salary += num;
+            return this->salary;
         }
 };
 
-class Student{
+class Student {
     public:
         string name;
         string className;
         int attendance;
         int score;
 
-        Student(string n, string c,int a,int s){
-            name = n;
-            className = c;
-            attendance = a;
-            score = s;
+        Student(string n, string c, int a, int s) {
+            this->name = n;
+            this->className = c;
+            this->attendance = a;
+            this->score = s;
         }
 
-        void displayInfo(){
-            cout<<"Name - "<<name<<endl;
-            cout<<"Class - "<<className<<endl;
-            cout<<"Attendance - "<<attendance<<endl;
-            cout<<"Score - "<<score<<endl<<endl;
+        void displayInfo() {
+            cout << "Name - " << this->name << endl;
+            cout << "Class - " << this->className << endl;
+            cout << "Attendance - " << this->attendance << endl;
+            cout << "Score - " << this->score << endl << endl;
         }
 
-        int increaseScore(int num){
-            score = score + num;
-            return score;
+        int increaseScore(int num) {
+            this->score += num;
+            return this->score;
         }
-
 };
+
 
 int main() {
 
@@ -69,7 +68,7 @@ int main() {
     // teacher3.displayInfo();
     // teacher4.displayInfo();
 
-    Student student1("Rushikesh Zope","9th B",92,68);
+    Student student1("Rushikesh Shah","9th B",92,68);
     Student student2("Parth Shah","10th A",99,90);
     Student student3("Ayush Tiwari","9th C",83,66);
     Student student4("Shreya Pawar","9th A",50,88);
