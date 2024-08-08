@@ -8,11 +8,14 @@ class Teacher {
         string subject;
         int salary;
 
+        static int totalTeachers;
+
         Teacher(string n, string c, string sub, int s) {
             this->name = n;
             this->classTeacherOf = c;
             this->subject = sub;
             this->salary = s;
+            totalTeachers++;
         }
 
         void displayInfo() {
@@ -35,11 +38,14 @@ class Student {
         int attendance;
         int score;
 
+        static int totalStudents;
+
         Student(string n, string c, int a, int s) {
             this->name = n;
             this->className = c;
             this->attendance = a;
             this->score = s;
+            totalStudents++;
         }
 
         void displayInfo() {
@@ -55,6 +61,8 @@ class Student {
         }
 };
 
+int Teacher::totalTeachers = 0;
+int Student::totalStudents = 0;
 
 int main() {
 
@@ -85,6 +93,9 @@ int main() {
 
     students[0]->increaseScore(10);
     students[0]->displayInfo();
+
+    cout << "Total Teachers: " << Teacher::totalTeachers << endl;
+    cout << "Total Students: " << Student::totalStudents << endl << endl;
 
     for(int i = 0; i < 4; i++){
         delete teachers[i];
