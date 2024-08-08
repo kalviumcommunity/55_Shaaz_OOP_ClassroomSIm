@@ -58,33 +58,38 @@ class Student {
 
 int main() {
 
-    Teacher teachers[] = {
-        Teacher("Shaaz Jiwani","9th C","Computer Science",30000),
-        Teacher("Om Jadhav","4th B","Marathi",100),
-        Teacher("Divyam Prabhu Desai","9th A","Football",20000),
-        Teacher("Ayman Velani","9th B","English",25000)
-    };
+    Teacher* teachers[4];
+
+    teachers[0]  = new Teacher("Shaaz Jiwani","9th C","Computer Science",30000);
+    teachers[1]  = new Teacher("Om Jadhav","4th B","Marathi",100);
+    teachers[2]  = new Teacher("Divyam Prabhu Desai","9th A","Football",20000);
+    teachers[3]  = new Teacher("Ayman Velani","9th B","English",25000);
 
     for(int i = 0; i < 4; i++) {
-        teachers[i].displayInfo();
+        teachers[i]->displayInfo();
     }
 
-    Student students[] = {
-        Student("Rushikesh Shah","9th B",92,68),
-        Student("Parth Shah","10th A",99,90),
-        Student("Ayush Tiwari","9th C",83,66),
-        Student("Shreya Pawar","9th A",50,88)
-    };
+    Student* students[4];
+
+    students[0] = new Student("Rushikesh Zope","9th B",92,68);
+    students[1] = new Student("Parth Shah","10th A",99,90);
+    students[2] = new Student("Ayush Tiwari","9th C",83,66);
+    students[3] = new Student("Shreya Pawar","9th A",50,88);
 
     for(int i = 0; i < 4; i++) {
-        students[i].displayInfo();
+        students[i]->displayInfo();
     }
 
-    teachers[0].increment(3333);
-    teachers[0].displayInfo();
+    teachers[0]->increment(3333);
+    teachers[0]->displayInfo();
 
-    students[0].increaseScore(10);
-    students[0].displayInfo();
+    students[0]->increaseScore(10);
+    students[0]->displayInfo();
+
+    for(int i = 0; i < 4; i++){
+        delete teachers[i];
+        delete students[i];
+    }
 
     return 0;
 }
