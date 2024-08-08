@@ -29,6 +29,10 @@ class Teacher {
             this->salary += num;
             return this->salary;
         }
+
+        static int getTotal(){
+            return totalTeachers;
+        }
 };
 
 class Student {
@@ -58,6 +62,10 @@ class Student {
         int increaseScore(int num) {
             this->score += num;
             return this->score;
+        }
+
+        static int getTotal(){
+            return totalStudents;
         }
 };
 
@@ -94,8 +102,8 @@ int main() {
     students[0]->increaseScore(10);
     students[0]->displayInfo();
 
-    cout << "Total Teachers: " << Teacher::totalTeachers << endl;
-    cout << "Total Students: " << Student::totalStudents << endl << endl;
+    cout << "Total Teachers: " << Teacher::getTotal() << endl;
+    cout << "Total Students: " << Student::getTotal() << endl << endl;
 
     for(int i = 0; i < 4; i++){
         delete teachers[i];
