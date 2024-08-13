@@ -2,13 +2,15 @@
 using namespace std;
 
 class Teacher {
-    public:
+    private:
         string name;
         string classTeacherOf;
         string subject;
         int salary;
 
         static int totalTeachers;
+
+    public:
 
         Teacher(string n, string c, string sub, int s) {
             this->name = n;
@@ -33,16 +35,54 @@ class Teacher {
         static int getTotal(){
             return totalTeachers;
         }
+
+        // ACCESSORS
+
+        string getName(){
+            return name;
+        }
+
+        string getClassTeacherOf(){
+            return classTeacherOf;
+        }
+
+        string getSubject(){
+            return subject;
+        }
+
+        int getSalary(){
+            return salary;
+        }
+
+        // MUTATORS
+
+        void setName(string s){
+            name = s;
+        }
+
+        void setClassTeacherOf(string s){
+            classTeacherOf = s;
+        }
+
+        void setSubject(string s){
+            subject = s;
+        }
+
+        void setSalary(int n){
+            salary = n;
+        }
 };
 
 class Student {
-    public:
+    private:
         string name;
         string className;
         int attendance;
         int score;
 
         static int totalStudents;
+
+    public:
 
         Student(string n, string c, int a, int s) {
             this->name = n;
@@ -66,6 +106,42 @@ class Student {
 
         static int getTotal(){
             return totalStudents;
+        }
+
+        // ACCESSORS
+
+        string getName(){
+            return name;
+        }
+
+        string getClassName(){
+            return className;
+        }
+
+        int getAttendance(){
+            return attendance;
+        }
+
+        int getScore(){
+            return score;
+        }
+
+        // MUTATORS
+
+        void setName(string s){
+            name = s;
+        }
+
+        void setClassName(string s){
+            className = s;
+        }
+
+        void setAttendance(int s){
+            attendance = s;
+        }
+
+        void setScore(int n){
+            score = n;
         }
 };
 
@@ -102,6 +178,9 @@ int main() {
     students[0]->increaseScore(10);
     students[0]->displayInfo();
 
+    students[0]->setScore(666);
+    students[0]->displayInfo();
+
     cout << "Total Teachers: " << Teacher::getTotal() << endl;
     cout << "Total Students: " << Student::getTotal() << endl << endl;
 
@@ -109,6 +188,8 @@ int main() {
         delete teachers[i];
         delete students[i];
     }
+
+    
 
     return 0;
 }
