@@ -14,6 +14,13 @@ class Teacher {
 
     public:
 
+        Teacher(){
+            this-> name = "";
+            this-> classTeacherOf = "";
+            this-> subject = "";
+            this-> salary = 0;
+        }
+
         Teacher(string n, string c, string sub, int s) {
             this->name = n;
             this->classTeacherOf = c;
@@ -73,6 +80,11 @@ class Teacher {
         void setSalary(int n){
             salary = n;
         }
+
+        ~Teacher(){
+            cout << "Destructor called for teacher : " << name << endl;
+        }
+        
 };
 
 class Student {
@@ -86,8 +98,14 @@ class Student {
     protected:
         int score;
 
-
     public:
+
+        Student(){
+            this-> name = "";
+            this-> className = "";
+            this-> attendance = 0;
+            this-> score = 0;
+        }
 
         Student(string n, string c, int a, int s) {
             this->name = n;
@@ -147,6 +165,10 @@ class Student {
 
         void setScore(int n){
             score = n;
+        }
+
+        ~Student(){
+            cout << "Destructor called for Student : " << name << endl;
         }
 };
 
