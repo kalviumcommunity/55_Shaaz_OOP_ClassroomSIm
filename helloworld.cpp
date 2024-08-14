@@ -6,9 +6,11 @@ class Teacher {
         string name;
         string classTeacherOf;
         string subject;
-        int salary;
 
         static int totalTeachers;
+
+    protected:
+        int salary;
 
     public:
 
@@ -78,9 +80,12 @@ class Student {
         string name;
         string className;
         int attendance;
-        int score;
 
         static int totalStudents;
+
+    protected:
+        int score;
+
 
     public:
 
@@ -188,8 +193,6 @@ int main() {
         delete teachers[i];
         delete students[i];
     }
-
-    
 
     return 0;
 }
