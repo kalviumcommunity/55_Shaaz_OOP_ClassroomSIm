@@ -175,6 +175,10 @@ class Principal : protected Teacher{
         int yearsOfExp;
 
     public:
+        Principal() : Teacher(){
+            yearsOfExp = 0;
+        }
+
         Principal(string n, string c, string sub, int s,int y) : Teacher(n,c,sub,s){
             this->name = n;
             this->classTeacherOf = c;
@@ -189,6 +193,12 @@ class Principal : protected Teacher{
             cout << "Main Subject for Principal - " << this->subject << endl;
             cout << "Salary - " << this->salary << endl;
             cout << "Years of Experience - " << this->yearsOfExp << endl << endl;
+        }
+
+        int increment(int num) {
+            this->salary += num;
+            cout << "Salary incremened for Principal " << this->name << endl;
+            return this->salary;
         }
 
         int getExp(){
@@ -209,6 +219,10 @@ class ClassMonitor : public Student{
         int leadershipScore;
 
     public:
+        ClassMonitor() : Student(){
+            leadershipScore = 0;
+        }
+
         ClassMonitor(string n, string c, int a, int s,int l) : Student(n,c,a,s){
             this->name = n;
             this->className = c;
@@ -223,6 +237,12 @@ class ClassMonitor : public Student{
             cout << "Attendance - " << this->attendance << endl;
             cout << "Score - " << this->score << endl;
             cout << "Leadership Score - " << this->leadershipScore << endl << endl;
+        }
+
+        int increaseScore(int num) {
+            this->score += num;
+            cout << "Score increased for student " << this->name << endl;
+            return this->score;
         }
 
         int getLeadership(){
@@ -278,7 +298,13 @@ int main() {
     Principal principal("Sam Basil","Squad 55","Data Science",1000000,5);
     principal.displayInfo();
 
+    principal.increment(111111);
+    principal.displayInfo();
+
     ClassMonitor classmonitor("Aditya Borhade","Squad 55",91,99,7);
+    classmonitor.displayInfo();
+
+    classmonitor.increaseScore(1);
     classmonitor.displayInfo();
 
     cout << "Total Teachers: " << Teacher::getTotal() << endl;
