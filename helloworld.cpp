@@ -3,13 +3,12 @@ using namespace std;
 
 class Teacher {
     private:
-        string name;
-        string classTeacherOf;
-        string subject;
-
         static int totalTeachers;
 
     protected:
+        string name;
+        string classTeacherOf;
+        string subject;
         int salary;
 
     public:
@@ -82,20 +81,19 @@ class Teacher {
         }
 
         ~Teacher(){
-            cout << "Destructor called for teacher : " << name << endl;
+            cout << "Destructor called for Teacher : " << name << endl;
         }
         
 };
 
 class Student {
     private:
-        string name;
-        string className;
-        int attendance;
-
         static int totalStudents;
 
     protected:
+        string name;
+        string className;
+        int attendance;
         int score;
 
     public:
@@ -172,6 +170,75 @@ class Student {
         }
 };
 
+class Principal : protected Teacher{
+    private:
+        int yearsOfExp;
+
+    public:
+        Principal(string n, string c, string sub, int s,int y) : Teacher(n,c,sub,s){
+            this->name = n;
+            this->classTeacherOf = c;
+            this->subject = sub;
+            this->salary = s;
+            this->yearsOfExp = y;
+        }
+
+        void displayInfo() {
+            cout << "Principal Name - " << this->name << endl;
+            cout << "Classes Assigned - " << this->classTeacherOf << endl;
+            cout << "Main Subject for Principal - " << this->subject << endl;
+            cout << "Salary - " << this->salary << endl;
+            cout << "Years of Experience - " << this->yearsOfExp << endl << endl;
+        }
+
+        int getExp(){
+            return yearsOfExp;
+        }
+
+        void setExp(int y){
+            yearsOfExp = y;
+        }
+
+        ~Principal(){
+            cout << "Destructor called for Principal - " << this->name << endl;
+        }
+};
+
+class ClassMonitor : public Student{
+    private:
+        int leadershipScore;
+
+    public:
+        ClassMonitor(string n, string c, int a, int s,int l) : Student(n,c,a,s){
+            this->name = n;
+            this->className = c;
+            this->attendance = a;
+            this->score = s;
+            this->leadershipScore = l;
+        }
+
+        void displayInfo() {
+            cout << "Name - " << this->name << endl;
+            cout << "Class - " << this->className << endl;
+            cout << "Attendance - " << this->attendance << endl;
+            cout << "Score - " << this->score << endl;
+            cout << "Leadership Score - " << this->leadershipScore << endl << endl;
+        }
+
+        int getLeadership(){
+            return leadershipScore;
+        }
+
+        void setLeadershipScore(int l){
+            leadershipScore = l;
+        }
+
+        ~ClassMonitor(){
+            cout << "Destructor called for Class Monitor - " << this-> name << endl ;
+        }
+
+};
+
 int Teacher::totalTeachers = 0;
 int Student::totalStudents = 0;
 
@@ -184,9 +251,9 @@ int main() {
     teachers[2]  = new Teacher("Divyam Prabhu Desai","9th A","Football",20000);
     teachers[3]  = new Teacher("Ayman Velani","9th B","English",25000);
 
-    for(int i = 0; i < 4; i++) {
-        teachers[i]->displayInfo();
-    }
+    // for(int i = 0; i < 4; i++) {
+    //     teachers[i]->displayInfo();
+    // }
 
     Student* students[4];
 
@@ -195,18 +262,24 @@ int main() {
     students[2] = new Student("Ayush Tiwari","9th C",83,66);
     students[3] = new Student("Shreya Pawar","9th A",50,88);
 
-    for(int i = 0; i < 4; i++) {
-        students[i]->displayInfo();
-    }
+    // for(int i = 0; i < 4; i++) {
+    //     students[i]->displayInfo();
+    // }
 
     teachers[0]->increment(3333);
-    teachers[0]->displayInfo();
+    // teachers[0]->displayInfo();
 
     students[0]->increaseScore(10);
-    students[0]->displayInfo();
+    // students[0]->displayInfo();
 
     students[0]->setScore(666);
-    students[0]->displayInfo();
+    // students[0]->displayInfo();
+
+    Principal principal("Sam Basil","Squad 55","Data Science",1000000,5);
+    principal.displayInfo();
+
+    ClassMonitor classmonitor("Aditya Borhade","Squad 55",91,99,7);
+    classmonitor.displayInfo();
 
     cout << "Total Teachers: " << Teacher::getTotal() << endl;
     cout << "Total Students: " << Student::getTotal() << endl << endl;
