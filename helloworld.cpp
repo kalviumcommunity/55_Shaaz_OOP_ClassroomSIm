@@ -1,34 +1,51 @@
 #include <iostream>
 using namespace std;
 
-class Teacher {
+class StaffMember{
+    protected:
+        string name;
+        int salary;
+
+    public:
+        StaffMember(){
+            name = "";
+            salary = 0;
+        }
+
+        StaffMember(string n,int s){
+            name = n;
+            salary = s;
+        }
+
+        virtual void displayInfo() = 0;
+
+        virtual ~StaffMember(){
+            cout << "Destructor called for Staff Member - " << this->name << endl;
+        }
+};
+
+class Teacher : public StaffMember{
     private:
         static int totalTeachers;
 
     protected:
-        string name;
         string classTeacherOf;
         string subject;
-        int salary;
 
     public:
 
-        Teacher(){
-            this-> name = "";
+        Teacher() : StaffMember(){
             this-> classTeacherOf = "";
             this-> subject = "";
-            this-> salary = 0;
         }
 
-        Teacher(string n, string c, string sub, int s) {
-            this->name = n;
+        Teacher(string n, string c, string sub, int s) : StaffMember(n,s){
             this->classTeacherOf = c;
             this->subject = sub;
-            this->salary = s;
             totalTeachers++;
         }
 
-        void displayInfo() {
+        void displayInfo() override {
             cout << "Name - " << this->name << endl;
             cout << "Class Teacher of - " << this->classTeacherOf << endl;
             cout << "Subject - " << this->subject << endl;
@@ -187,7 +204,7 @@ class Principal : protected Teacher{
             this->yearsOfExp = y;
         }
 
-        void displayInfo() {
+        void displayInfo() override {
             cout << "Principal Name - " << this->name << endl;
             cout << "Classes Assigned - " << this->classTeacherOf << endl;
             cout << "Main Subject for Principal - " << this->subject << endl;
