@@ -110,7 +110,7 @@ class Teacher : public StaffMember{
         
 };
 
-class Principal : protected Teacher{
+class Principal : public Teacher{
     private:
         int yearsOfExp;
 
@@ -128,11 +128,8 @@ class Principal : protected Teacher{
         }
 
         void displayInfo() override {
-            cout << "Principal Name - " << this->name << endl;
-            cout << "Classes Assigned - " << this->classTeacherOf << endl;
-            cout << "Main Subject for Principal - " << this->subject << endl;
-            cout << "Salary - " << this->salary << endl;
-            cout << "Years of Experience - " << this->yearsOfExp << endl << endl;
+            Teacher::displayInfo(); 
+            cout << "Years of Experience - " << this->yearsOfExp << endl;
         }
 
         int increment(int num) {
