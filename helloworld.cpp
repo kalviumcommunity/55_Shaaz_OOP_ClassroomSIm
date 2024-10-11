@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+class SalaryManager {
+public:
+    static int incrementSalary(int salary, int increment) {
+        return salary + increment;
+    }
+};
+
 class StaffMember{
     protected:
         string name;
@@ -53,7 +60,7 @@ class Teacher : public StaffMember{
         }
 
         int increment(int num) {
-            this->salary += num;
+            this->salary = SalaryManager::incrementSalary(this->salary, num);
             return this->salary;
         }
 
@@ -103,6 +110,56 @@ class Teacher : public StaffMember{
         
 };
 
+class Principal : protected Teacher{
+    private:
+        int yearsOfExp;
+
+    public:
+        Principal() : Teacher(){
+            yearsOfExp = 0;
+        }
+
+        Principal(string n, string c, string sub, int s,int y) : Teacher(n,c,sub,s){
+            this->name = n;
+            this->classTeacherOf = c;
+            this->subject = sub;
+            this->salary = s;
+            this->yearsOfExp = y;
+        }
+
+        void displayInfo() override {
+            cout << "Principal Name - " << this->name << endl;
+            cout << "Classes Assigned - " << this->classTeacherOf << endl;
+            cout << "Main Subject for Principal - " << this->subject << endl;
+            cout << "Salary - " << this->salary << endl;
+            cout << "Years of Experience - " << this->yearsOfExp << endl << endl;
+        }
+
+        int increment(int num) {
+            this->salary = SalaryManager::incrementSalary(this->salary, num);
+            return this->salary;
+        }
+
+        int getExp(){
+            return yearsOfExp;
+        }
+
+        void setExp(int y){
+            yearsOfExp = y;
+        }
+
+        ~Principal(){
+            cout << "Destructor called for Principal - " << this->name << endl;
+        }
+};
+
+class ScoreManager {
+public:
+    static int increaseScore(int score, int increment) {
+        return score + increment;
+    }
+};
+
 class Student {
     private:
         static int totalStudents;
@@ -138,7 +195,7 @@ class Student {
         }
 
         int increaseScore(int num) {
-            this->score += num;
+            this->score = ScoreManager::increaseScore(this->score, num);
             return this->score;
         }
 
@@ -187,50 +244,6 @@ class Student {
         }
 };
 
-class Principal : protected Teacher{
-    private:
-        int yearsOfExp;
-
-    public:
-        Principal() : Teacher(){
-            yearsOfExp = 0;
-        }
-
-        Principal(string n, string c, string sub, int s,int y) : Teacher(n,c,sub,s){
-            this->name = n;
-            this->classTeacherOf = c;
-            this->subject = sub;
-            this->salary = s;
-            this->yearsOfExp = y;
-        }
-
-        void displayInfo() override {
-            cout << "Principal Name - " << this->name << endl;
-            cout << "Classes Assigned - " << this->classTeacherOf << endl;
-            cout << "Main Subject for Principal - " << this->subject << endl;
-            cout << "Salary - " << this->salary << endl;
-            cout << "Years of Experience - " << this->yearsOfExp << endl << endl;
-        }
-
-        int increment(int num) {
-            this->salary += num;
-            cout << "Salary incremened for Principal " << this->name << endl;
-            return this->salary;
-        }
-
-        int getExp(){
-            return yearsOfExp;
-        }
-
-        void setExp(int y){
-            yearsOfExp = y;
-        }
-
-        ~Principal(){
-            cout << "Destructor called for Principal - " << this->name << endl;
-        }
-};
-
 class ClassMonitor : public Student{
     private:
         int leadershipScore;
@@ -257,8 +270,7 @@ class ClassMonitor : public Student{
         }
 
         int increaseScore(int num) {
-            this->score += num;
-            cout << "Score increased for student " << this->name << endl;
+            this->score = ScoreManager::increaseScore(this->score, num);
             return this->score;
         }
 
