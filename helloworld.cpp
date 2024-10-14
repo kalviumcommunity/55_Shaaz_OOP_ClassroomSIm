@@ -184,14 +184,14 @@ class Student {
             totalStudents++;
         }
 
-        void displayInfo() {
+        virtual void displayInfo() {
             cout << "Name - " << this->name << endl;
             cout << "Class - " << this->className << endl;
             cout << "Attendance - " << this->attendance << endl;
             cout << "Score - " << this->score << endl << endl;
         }
 
-        int increaseScore(int num) {
+        virtual int increaseScore(int num) {
             this->score = ScoreManager::increaseScore(this->score, num);
             return this->score;
         }
@@ -285,6 +285,36 @@ class ClassMonitor : public Student{
 
 };
 
+class ScholarshipStudent : public Student {
+    private:
+        float scholarshipBonus;  
+
+    public:
+        ScholarshipStudent() : Student() {
+            scholarshipBonus = 0.1;  
+        }
+
+        ScholarshipStudent(string n, string c, int a, int s, float bonus) : Student(n, c, a, s) {
+            scholarshipBonus = bonus;
+        }
+
+        int increaseScore(int num) override {
+            int boostedScore = ScoreManager::increaseScore(this->score, num);
+            this->score = boostedScore + static_cast<int>(boostedScore * scholarshipBonus);  
+            return this->score;
+        }
+
+        float getScholarshipBonus() {
+            return scholarshipBonus;
+        }
+
+        void displayInfo() override {
+            Student::displayInfo();
+            cout << "Scholarship Bonus - " << scholarshipBonus * 100 << "%" << endl;
+        }
+};
+
+
 int Teacher::totalTeachers = 0;
 int Student::totalStudents = 0;
 
@@ -335,6 +365,10 @@ int main() {
 
     cout << "Total Teachers: " << Teacher::getTotal() << endl;
     cout << "Total Students: " << Student::getTotal() << endl << endl;
+
+    ScholarshipStudent schStudent("Parth Shah", "72", 95, 85, 0.2); 
+    schStudent.displayInfo();
+
 
     for(int i = 0; i < 4; i++){
         delete teachers[i];
